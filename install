@@ -35,6 +35,9 @@ for args in "$@" ; do
       vim -E -c PlugInstall -c q -c q
       vim -E -c GoInstallBinaries -c q -c q
       ;;
+    linux)
+      exec bash $0 apt clean init
+      ;;
     *)
       echo "FATAL:  unknown options"
       exit 1
