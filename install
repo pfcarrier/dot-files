@@ -18,7 +18,9 @@ for args in "$@" ; do
         golang \
         git \
         tmate \
-        tmux
+        tmux \
+        mosh \
+        tree
       ;;
     clean)
       rm -f \
