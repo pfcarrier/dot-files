@@ -25,13 +25,15 @@ for args in "$@" ; do
     clean)
       rm -f \
         ~/.vimrc \
-        ~/.gitconfig
+        ~/.gitconfig \
+        ~/.bash_profile
       ;;
     init)
       curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       ln -s $HOME/work/dot-files/vim/vimrc ~/.vimrc
       ln -s $HOME/work/dot-files/gitconfig ~/.gitconfig
+      ln -s $HOME/work/dot-files/bash_profile ~/.bash_profile
       vim -E -c PlugInstall -c q -c q
       vim -E -c GoInstallBinaries -c q -c q
       ;;
