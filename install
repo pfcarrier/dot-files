@@ -2,7 +2,7 @@
 
 if [[ -z "$1" ]] ; then
   echo "FATAL: args required.  You likely want to run"
-  echo "       $0 apt clean init"
+  echo "       $0 apt repos clean init"
   exit 1
 fi
 
@@ -38,10 +38,19 @@ for args in "$@" ; do
       vim -E -c GoInstallBinaries -c q -c q
       ;;
     linux)
-      exec bash $0 apt clean init
+      exec bash $0 apt repos clean init repos
+      ;;
+    repos)
+      (
+        mkdir -p ~/work
+        cd ~/work
+        [[ ! -e wa-devenv ]] && git clone git@github.com:Liaison-Intl/wa-devenv.git
+        [[ ! -e fxops_docker ]] && git clone git@github.com:pfcarrier/fxops_docker.git
+        [[ ! -e dot-files ]] && git clone git@github.com:pfcarrier/dot-files.git
+      )
       ;;
     *)
-      echo "FATAL:  unknown options"
+      echo "FATAL:  unknown option '$args'"
       exit 1
       ;;
   esac
