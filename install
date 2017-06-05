@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -exo pipefail
+
+if [[ "$1" == "clean" ]] ; then
+  rm -f \
+    ~/.vimrc
+    ~/.gitconfig
+fi
+
+ln -s $HOME/work/dot-files/vim/vimrc ~/.vimrc
+ln -s $HOME/work/dot-files/gitconfig ~/.gitconfig

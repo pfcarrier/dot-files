@@ -1,0 +1,190 @@
+" Use Vim settings, rather then Vi settings.
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+set nomodeline
+
+" Define space as the leader key
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+" ================ General Config ====================
+
+set number                      "Line numbers are good
+set relativenumber
+set backspace=indent,eol,start  "Allow backspace in insert mode
+set history=1000                "Store lots of :cmdline history
+set showcmd                     "Show incomplete cmds down the bottom
+set showmode                    "Show current mode down the bottom
+set visualbell                  "No sounds
+
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
+
+" ================ Turn Off Swap Files ==============
+
+set noswapfile
+set nobackup
+set nowb
+
+" ================ Indentation ======================
+
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+
+"filetype plugin on
+"filetype indent on
+
+" Display tabs and trailing spaces visually
+"set list listchars=tab:\ \ ,trail:Â
+set list listchars=tab:\ \ ,trail:-
+
+"set nowrap       "Don't wrap lines
+"set linebreak    "Wrap lines at convenient points
+
+" ================ Folds ============================
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
+
+" ============== Remember Cursor location ===========
+
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
+" ================ Scrolling ========================
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+" =========== Toggle set paste/nopaste mode =========
+"set pastetoggle=<F2>
+
+" ======== Toggle set number (ctrl+n,ctrl+n) ========
+:nmap <C-N><C-N> :set invnumber<CR>:set invrelativenumber<CR>
+
+" ======== Display a visual clue past col 80 ========
+"set colorcolumn=80
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%>80v.\+/
+
+" vim-plug pluggins
+"call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'fatih/vim-go'
+Plug 'fatih/molokai'
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
+
+" From Jerome
+set sw=2
+set laststatus=2
+syntax on
+set showmatch
+"set listchars=tab:â–¸\ ,trail:.
+"set smarttab
+"set list " show all hidden character
+
+" From thomas
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,    case-sensitive otherwise
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+
+set mouse=
+map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
+
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+let NERDTreeMouseMode=2
+
+" toggle NERDTreeTabsToggle
+:nmap <leader>n :NERDTreeTabsToggle<CR>
+
+" Ease moving between pane with alt-arrow
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
+nnoremap <silent> <leader><UP> :wincmd k<CR>
+nnoremap <silent> <leader><DOWN> :wincmd j<CR>
+nnoremap <silent> <leader><LEFT> :wincmd h<CR>
+nnoremap <silent> <leader><RIGHT> :wincmd l<CR>
+nnoremap <silent> <leader><k> :wincmd k<CR>
+nnoremap <silent> <leader><j> :wincmd j<CR>
+nnoremap <silent> <leader><h> :wincmd h<CR>
+nnoremap <silent> <leader><l> :wincmd l<CR>
+
+"let g:rehash256 = 1
+"let g:molokai_original = 1
+"colorscheme molokai
+set background=light
+"set background=dark
+"set background=light
+colorscheme solarized
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
+:nmap <leader>f :w<CR>:GoFmt<CR>
+:nmap <leader>b :w<CR>:GoBuild<CR>
+:nmap <leader>t :w<CR>:GoTest<CR>
+:nmap <leader>r :w<CR>:GoRun<CR>
+:nmap <leader>l :w<CR>:GoLint<CR>
+:nmap gr :call go#def#StackPop(v:count1)<CR>
+
+" Flow reminder
+" :tabnew -- newtab
+" 2gt     -- go to tab 2
+" <leader>n       -- toggel NERDTreeTabs
+" t       -- NERD -> open file in a new tab
+" T       -- NERD -> open file in a new tab, stay in NERD
+" <C-w_>
+" <C-w+>
+" <C-w->
+" <C-w=>
+" ctrl-hjkl -- move between pane
+" <leader>-hjkl -- move between pane
+" <leader>arrow -- move between pane
+" qa        -- close all
+" ci "      -- replace everything between "
+" C         -- replace everything from cursor till end of line
+" A         -- append at the end of the line
+" I         -- insert begin of the line
+" VIM-GO RELATED
+" gd        -- go to definition
+" ctrl-t    -- go back from definition
+" gr        -- go back from definition (alt)
+"
+let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrowExpandable = '>'
+let g:NERDTreeDirArrowCollapsible = '-'
+
