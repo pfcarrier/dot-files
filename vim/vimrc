@@ -122,5 +122,6 @@ set background=light
 source $HOME/work/dot-files/vim/keymaps.vim
 source $HOME/work/dot-files/vim/abbreviations.vim
 
-" Speed up scrolling
-"set lazyredraw
+set nocursorcolumn              " Do not highlight column (speeds up highlighting)
+set nocursorline                " Do not highlight cursor (speeds up highlighting)
+set lazyredraw                  " Wait to redraw
