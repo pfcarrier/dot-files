@@ -41,9 +41,11 @@ for args in "$@" ; do
       ln -s $HOME/work/dot-files/bash_profile ~/.bash_profile
       vim -E -c PlugInstall -c q -c q
       vim -E -c GoInstallBinaries -c q -c q
+      nvim -E -c PlugInstall -c q -c q
+      nvim -E -c GoInstallBinaries -c q -c q
       ;;
     linux)
-      exec bash $0 apt repos clean init repos
+      exec bash $0 apt repos clean init
       ;;
     repos)
       (
