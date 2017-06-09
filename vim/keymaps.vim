@@ -62,12 +62,13 @@ map <leader>s :setlocal spell! spelllang=en_us<CR>
 set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
-" Go related shortcut
+" Golang related shortcut
 :nmap <leader>f :w<CR>:GoFmt<CR>
 :nmap <leader>b :w<CR>:GoBuild<CR>
 :nmap <leader>t :w<CR>:GoTest<CR>
 :nmap <leader>r :w<CR>:GoRun<CR>
 :nmap <leader>l :w<CR>:GoLint<CR>
+:nmap <leader>i :GoImports<CR>
 :nmap gr :call go#def#StackPop(v:count1)<CR>
 
 " Reminder
