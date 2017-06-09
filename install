@@ -14,6 +14,7 @@ for args in "$@" ; do
       apt-get update
       apt-get install -y \
         vim \
+        nvim \
         curl \
         golang \
         git \
@@ -31,6 +32,10 @@ for args in "$@" ; do
     init)
       curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      mkdir -p ~/.config/nvim/
+      ln -s ~/.vimrc ~/.config/nvim/init.vim
       ln -s $HOME/work/dot-files/vim/vimrc ~/.vimrc
       ln -s $HOME/work/dot-files/gitconfig ~/.gitconfig
       ln -s $HOME/work/dot-files/bash_profile ~/.bash_profile
