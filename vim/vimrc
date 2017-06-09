@@ -184,7 +184,7 @@ map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR
 " ctrl-t    -- go back from definition
 " gr        -- go back from definition (alt)
 "
-let g:NERDTreeDirArrows=0
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = '-'
 
+" Ensure vim display correctly UTF-8 character
+:set encoding=utf-8
+:set fileencoding=utf-8
