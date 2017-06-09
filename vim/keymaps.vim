@@ -117,3 +117,6 @@ else
 endif
 endfunction
 map <leader>co :call ToggleDimTags()<CR>
+
+" Remove search highlight
+nnoremap <leader><space> :nohlsearch<CR>
