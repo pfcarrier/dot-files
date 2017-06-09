@@ -23,19 +23,11 @@ nmap <silent> <S-l> :wincmd l <CR>
 nmap <silent> <S-j> :wincmd j <CR>
 nmap <silent> <S-k> :wincmd k <CR>
 
-" Ease moving between pane with alt-arrow
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <silent> <C-j> :wincmd j<CR>
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-l> :wincmd l<CR>
+" Ease moving between pane using leader-arrow
 nnoremap <silent> <leader><UP> :wincmd k<CR>
 nnoremap <silent> <leader><DOWN> :wincmd j<CR>
 nnoremap <silent> <leader><LEFT> :wincmd h<CR>
 nnoremap <silent> <leader><RIGHT> :wincmd l<CR>
-nnoremap <silent> <leader><k> :wincmd k<CR>
-nnoremap <silent> <leader><j> :wincmd j<CR>
-nnoremap <silent> <leader><h> :wincmd h<CR>
-nnoremap <silent> <leader><l> :wincmd l<CR>
 
 " Use CTRL-movement to move between tabs.
 nmap <silent> <C-l> :tabnext <CR>
@@ -118,8 +110,10 @@ map <Leader>co :let &colorscheme = ( &colorscheme == "solarized"? "molokai" : "s
 function! ToggleDimTags()
 if (g:colors_name == "solarized")
   colors molokai
+  set background=dark
 else
   colors solarized
+  set background=light
 endif
 endfunction
 map <leader>co :call ToggleDimTags()<CR>
