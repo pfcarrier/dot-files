@@ -3,9 +3,12 @@
 set nocompatible
 set nomodeline
 
-" Define space as the leader key
-nnoremap <SPACE> <Nop>
-let mapleader=" "
+" Ensure vim display correctly UTF-8 character
+:set encoding=utf-8
+:set fileencoding=utf-8
+
+" Load vim-plug
+source $HOME/work/dot-files/vim/plug.vim
 
 " ================ General Config ====================
 
@@ -36,14 +39,13 @@ set smarttab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set expandtab
+"set expandtab
 
 "filetype plugin on
 "filetype indent on
 
 " Display tabs and trailing spaces visually
-"set list listchars=tab:\ \ ,trail:Â
-set list listchars=tab:\ \ ,trail:-
+set list listchars=tab:\ \ ,trail:Â·
 
 "set nowrap       "Don't wrap lines
 "set linebreak    "Wrap lines at convenient points
@@ -85,26 +87,10 @@ set sidescroll=1
 " =========== Toggle set paste/nopaste mode =========
 "set pastetoggle=<F2>
 
-" ======== Toggle set number (ctrl+n,ctrl+n) ========
-:nmap <C-N><C-N> :set invnumber<CR>:set invrelativenumber<CR>
-
 " ======== Display a visual clue past col 80 ========
 "set colorcolumn=80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%>80v.\+/
-
-" vim-plug pluggins
-"call plug#begin('~/.local/share/nvim/plugged')
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
-Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'fatih/vim-go'
-Plug 'fatih/molokai'
-Plug 'altercation/vim-colors-solarized'
-call plug#end()
 
 " From Jerome
 set sw=2
@@ -121,70 +107,20 @@ set smartcase     " ignore case if search pattern is all lowercase,    case-sens
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 
-set mouse=
-map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
-
+"NERDTree settings
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeMouseMode=2
 
-" toggle NERDTreeTabsToggle
-:nmap <leader>n :NERDTreeTabsToggle<CR>
-
-" Ease moving between pane with alt-arrow
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <silent> <C-j> :wincmd j<CR>
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-l> :wincmd l<CR>
-nnoremap <silent> <leader><UP> :wincmd k<CR>
-nnoremap <silent> <leader><DOWN> :wincmd j<CR>
-nnoremap <silent> <leader><LEFT> :wincmd h<CR>
-nnoremap <silent> <leader><RIGHT> :wincmd l<CR>
-nnoremap <silent> <leader><k> :wincmd k<CR>
-nnoremap <silent> <leader><j> :wincmd j<CR>
-nnoremap <silent> <leader><h> :wincmd h<CR>
-nnoremap <silent> <leader><l> :wincmd l<CR>
-
 "let g:rehash256 = 1
 "let g:molokai_original = 1
 "colorscheme molokai
+colorscheme solarized
 set background=light
 "set background=dark
-"set background=light
-colorscheme solarized
-map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
-:nmap <leader>f :w<CR>:GoFmt<CR>
-:nmap <leader>b :w<CR>:GoBuild<CR>
-:nmap <leader>t :w<CR>:GoTest<CR>
-:nmap <leader>r :w<CR>:GoRun<CR>
-:nmap <leader>l :w<CR>:GoLint<CR>
-:nmap gr :call go#def#StackPop(v:count1)<CR>
+source $HOME/work/dot-files/vim/keymaps.vim
+source $HOME/work/dot-files/vim/abbreviations.vim
 
-" Flow reminder
-" :tabnew -- newtab
-" 2gt     -- go to tab 2
-" <leader>n       -- toggel NERDTreeTabs
-" t       -- NERD -> open file in a new tab
-" T       -- NERD -> open file in a new tab, stay in NERD
-" <C-w_>
-" <C-w+>
-" <C-w->
-" <C-w=>
-" ctrl-hjkl -- move between pane
-" <leader>-hjkl -- move between pane
-" <leader>arrow -- move between pane
-" qa        -- close all
-" ci "      -- replace everything between "
-" C         -- replace everything from cursor till end of line
-" A         -- append at the end of the line
-" I         -- insert begin of the line
-" VIM-GO RELATED
-" gd        -- go to definition
-" ctrl-t    -- go back from definition
-" gr        -- go back from definition (alt)
-"
-
-" Ensure vim display correctly UTF-8 character
-:set encoding=utf-8
-:set fileencoding=utf-8
+" Speed up scrolling
+"set lazyredraw
