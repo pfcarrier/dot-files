@@ -88,9 +88,9 @@ set sidescroll=1
 "set pastetoggle=<F2>
 
 " ======== Display a visual clue past col 80 ========
-"set colorcolumn=80
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%>80v.\+/
+set colorcolumn=80
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%>80v.\+/
 
 " From Jerome
 set sw=2
