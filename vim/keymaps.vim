@@ -101,6 +101,9 @@ map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 " gd        -- go to definition
 " ctrl-t    -- go back from definition
 " gr        -- go back from definition (alt)
+" C-n       -- new tab
+" tab       -- next tab
+" S-tab     -- previous tab
 
 " Hide/unhide number
 :nmap <leader>h :set invnumber<CR>:set invrelativenumber<CR>
