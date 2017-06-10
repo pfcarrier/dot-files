@@ -72,8 +72,8 @@ autocmd FileType go nmap <leader>i :GoImports<CR>
 autocmd FileType go nmap <leader>m :GoMetaLinter<CR>
 autocmd FileType go nmap gr :call go#def#StackPop(v:count1)<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-map <leader>i :cnext<CR>            " next quickfix item
-map <leader>o :cprevious<CR>        " previous quickfix item
+map <leader>- :cnext<CR>            " next quickfix item
+map <leader>= :cprevious<CR>        " previous quickfix item
 nnoremap <leader>a :cclose<CR>      " close quickfix window
 
 " run :GoBuild or :GoTestCompile based on the go file
@@ -85,10 +85,8 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
-"autocmd FileType go nmap <leader>b :GoBuild<CR>
-
-
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+"autocmd FileType go nmap <leader>b :GoBuild<CR>
 
 " ==================== Reminder =======================
 " :tabnew -- newtab
