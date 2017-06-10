@@ -70,8 +70,6 @@ for args in "$@" ; do
       (
         mkdir -p ~/work
         cd ~/work
-        [[ ! -e wa-devenv ]] && git clone git@github.com:Liaison-Intl/wa-devenv.git
-        [[ ! -e fxops_docker ]] && git clone git@github.com:pfcarrier/fxops_docker.git
         [[ ! -e dot-files ]] && git clone git@github.com:pfcarrier/dot-files.git
         true # prevent sub shell return code to be false from the last "if"
       )
