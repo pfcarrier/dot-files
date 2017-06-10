@@ -23,11 +23,15 @@ nmap <silent> <S-l> :wincmd l <CR>
 nmap <silent> <S-j> :wincmd j <CR>
 nmap <silent> <S-k> :wincmd k <CR>
 
-" Ease moving between pane using leader-arrow
+" Use leader-arrow to move between pane
 nnoremap <silent> <leader><UP> :wincmd k<CR>
 nnoremap <silent> <leader><DOWN> :wincmd j<CR>
 nnoremap <silent> <leader><LEFT> :wincmd h<CR>
 nnoremap <silent> <leader><RIGHT> :wincmd l<CR>
+nnoremap <silent> <leader>k :wincmd k<CR>
+nnoremap <silent> <leader>j :wincmd j<CR>
+nnoremap <silent> <leader>h :wincmd h<CR>
+nnoremap <silent> <leader>l :wincmd l<CR>
 
 " Use CTRL-movement to move between tabs.
 nmap <silent> <C-l> :tabnext <CR>
@@ -63,13 +67,13 @@ set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
 " ========== Golang/vim-go related shortcut ===========
-autocmd FileType go nmap <leader>f :GoFmt<CR>
-autocmd FileType go nmap <leader>t :GoTest<CR>
-autocmd FileType go nmap <leader>f :GoTestFunc<CR>
-autocmd FileType go nmap <leader>r :GoRun<CR>
-autocmd FileType go nmap <leader>l :GoLint<CR>
-autocmd FileType go nmap <leader>i :GoImports<CR>
-autocmd FileType go nmap <leader>m :GoMetaLinter<CR>
+autocmd FileType go nmap <leader>f  :GoFmt<CR>
+autocmd FileType go nmap <leader>t  :GoTest<CR>
+autocmd FileType go nmap <leader>tt :GoTestFunc<CR>
+autocmd FileType go nmap <leader>r  :GoRun<CR>
+"autocmd FileType go nmap <leader>l  :GoLint<CR>
+autocmd FileType go nmap <leader>i  :GoImports<CR>
+autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
 autocmd FileType go nmap gr :call go#def#StackPop(v:count1)<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 map <leader>- :cnext<CR>            " next quickfix item
@@ -116,7 +120,7 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 " S-tab     -- previous tab
 
 " Hide/unhide number
-:nmap <leader>h :set invnumber<CR>:set invrelativenumber<CR>
+:nmap <leader>nn :set invnumber<CR>:set invrelativenumber<CR>
 
 " Switch background light/dark
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
