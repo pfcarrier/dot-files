@@ -62,16 +62,35 @@ map <leader>s :setlocal spell! spelllang=en_us<CR>
 set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
-" Golang related shortcut
-:nmap <leader>f :w<CR>:GoFmt<CR>
-:nmap <leader>b :w<CR>:GoBuild<CR>
-:nmap <leader>t :w<CR>:GoTest<CR>
-:nmap <leader>r :w<CR>:GoRun<CR>
-:nmap <leader>l :w<CR>:GoLint<CR>
-:nmap <leader>i :GoImports<CR>
-:nmap gr :call go#def#StackPop(v:count1)<CR>
+" ========== Golang/vim-go related shortcut ===========
+autocmd FileType go nmap <leader>f :GoFmt<CR>
+autocmd FileType go nmap <leader>t :GoTest<CR>
+autocmd FileType go nmap <leader>f :GoTestFunc<CR>
+autocmd FileType go nmap <leader>r :GoRun<CR>
+autocmd FileType go nmap <leader>l :GoLint<CR>
+autocmd FileType go nmap <leader>i :GoImports<CR>
+autocmd FileType go nmap <leader>m :GoMetaLinter<CR>
+autocmd FileType go nmap gr :call go#def#StackPop(v:count1)<CR>
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+map <leader>i :cnext<CR>            " next quickfix item
+map <leader>o :cprevious<CR>        " previous quickfix item
+nnoremap <leader>a :cclose<CR>      " close quickfix window
 
-" Reminder
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+"autocmd FileType go nmap <leader>b :GoBuild<CR>
+
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+" ==================== Reminder =======================
 " :tabnew -- newtab
 " 2gt     -- go to tab 2
 " <leader>n       -- toggel NERDTreeTabs
