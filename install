@@ -23,9 +23,23 @@ for args in "$@" ; do
         mosh \
         tree
       ;;
+    brew)
+      brew install \
+        coreutils \
+        vim \
+        neovim/neovim/neovim \
+        curl \
+        golang \
+        git \
+        tmate \
+        tmux \
+        mosh \
+        tree
+      ;;
     clean)
       rm -f \
         ~/.vimrc \
+        ~/.config/nvim/init.vim \
         ~/.gitconfig \
         ~/.bash_profile
       ;;
@@ -40,14 +54,17 @@ for args in "$@" ; do
       ln -s $HOME/work/dot-files/gitconfig ~/.gitconfig
       ln -s $HOME/work/dot-files/bash_profile ~/.bash_profile
       vim -E -c PlugInstall -c q -c q
-      nvim -E -c PlugInstall -c q -c q
       vim -E -c GoInstallBinaries -c q -c q
-      nvim -E -c GoInstallBinaries -c q -c q
+      [[ $(which nvim) > /dev/null ]] && nvim -E -c PlugInstall -c q -c q
+      [[ $(which nvim) > /dev/null ]] && nvim -E -c GoInstallBinaries -c q -c q
       #vim -E -c GoUpdateBinaries -c q -c q
       #nvim -E -c GoUpdateBinaries -c q -c q
       ;;
     linux)
       exec bash $0 apt repos clean init
+      ;;
+    macos)
+      exec bash $0 brew repos clean init
       ;;
     repos)
       (
