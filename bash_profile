@@ -33,3 +33,34 @@ if [[ "$(uname)" == "Darwin" ]] ; then
     . /usr/local/share/gitprompt.sh
   fi
 fi
+
+## quickly update/re-install dot-files
+#
+function dotfiles(){
+  if [[ "$(uname)" == "Linux" ]] ; then
+    OS=linux
+  else
+    OS=macos
+  fi
+
+  case "$1" in
+    install)
+      (
+        set -x
+        bash ~/work/dot-files/install ${OS}
+        exit 0
+      )
+      ;;
+    update)
+      (
+        set -x
+        cd ~/work/dot-files/
+        git fetch ; git rebase
+      )
+      ;;
+    *)
+      echo "Syntax: $0 update|install"
+      exit 1
+      ;;
+  esac
+}
