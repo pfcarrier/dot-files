@@ -56,6 +56,7 @@ function dotfiles(){
         set -x
         cd ~/work/dot-files/
         git fetch ; git rebase
+        bash ~/work/dot-files/install ${OS}
       )
       ;;
     *)
