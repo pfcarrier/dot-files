@@ -3,6 +3,7 @@
 ## Install
   ```
   curl "https://raw.githubusercontent.com/pfcarrier/dot-files/master/install" | bash -s -- apt repos clean init
+  exec bash -l
   ```
 
 ## Thank you / Credit
