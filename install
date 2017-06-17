@@ -2,7 +2,7 @@
 
 if [[ -z "$1" ]] ; then
   echo "FATAL: args required.  You likely want to run"
-  echo "       $0 apt repos clean init"
+  echo "       $0 apt-debian repos clean init"
   exit 1
 fi
 
@@ -10,7 +10,7 @@ set -exo pipefail
 
 for args in "$@" ; do
   case "${args}" in
-    apt)
+    apt-termux)
       apt-get update
       apt-get install -y \
         vim \
@@ -22,6 +22,20 @@ for args in "$@" ; do
         tmux \
         mosh \
         tree
+      ;;
+    apt-debian)
+      sudo apt-get update
+      sudo apt-get install -y \
+        vim \
+        curl \
+        git \
+        tmate \
+        tmux \
+        mosh \
+        tree
+      sudo apt-get install -t jessie-backports \
+        golang \
+        tmate
       ;;
     brew)
       brew install \
@@ -53,15 +67,22 @@ for args in "$@" ; do
       ln -s $HOME/work/dot-files/vim/vimrc ~/.vimrc
       ln -s $HOME/work/dot-files/gitconfig ~/.gitconfig
       ln -s $HOME/work/dot-files/bash_profile ~/.bash_profile
-      vim -E -c PlugInstall -c q -c q
-      vim -E -c GoInstallBinaries -c q -c q
-      nvim -E -c PlugInstall -c q -c q
-      nvim -E -c GoInstallBinaries -c q -c q
+      source ~/.bash_profile
+      vim -c PlugInstall -c q -c q
+      vim -c GoInstallBinaries -c q -c q
+      if which nvim &>/dev/null ; then
+        nvim -c PlugInstall -c q -c q
+        nvim -c GoInstallBinaries -c q -c q
+      fi
       #vim -E -c GoUpdateBinaries -c q -c q
       #nvim -E -c GoUpdateBinaries -c q -c q
       ;;
     linux)
-      exec bash $0 apt repos clean init
+      if [[ "$HOME" == *"termux"* ]] ; then
+        exec bash $0 apt-termux repos clean init
+      else
+        exec bash $0 apt-debian repos clean init
+      fi
       ;;
     macos)
       exec bash $0 brew repos clean init

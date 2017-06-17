@@ -2,7 +2,7 @@
 
 ## Install
   ```
-  curl "https://raw.githubusercontent.com/pfcarrier/dot-files/master/install" | bash -s -- apt repos clean init
+  curl "https://raw.githubusercontent.com/pfcarrier/dot-files/master/install" | bash -s -- apt-debian repos clean init
   exec bash -l
   ```
 
