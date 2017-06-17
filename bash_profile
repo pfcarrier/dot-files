@@ -1,7 +1,7 @@
 export PATH=$PATH:$HOME/bin:$HOME/work/wa-devenv/kubernetes:$HOME/work/wa-devenv/deploy
 export GOPATH=$HOME
 alias vi=vim
-alias vim=nvim
+#alias vim=nvim
 
 ## Special profile item for termux usage
 #
