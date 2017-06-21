@@ -1,7 +1,10 @@
 export PATH=$PATH:$HOME/bin:$HOME/work/wa-devenv/kubernetes:$HOME/work/wa-devenv/deploy
 export GOPATH=$HOME
+export EDITOR=vim
 alias vi=vim
 #alias vim=nvim
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 
 ## Special profile item for termux usage
 #
@@ -62,3 +65,32 @@ function dotfiles(){
       ;;
   esac
 }
+
+# don't put duplicate lines or lines starting with space in the history.
+# # See bash(1) for more options
+#
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+#
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+#
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+#
+shopt -s checkwinsize
+
+alias .="cd .."
+alias ..="cd ../.."
+alias ...="cd ../../.."
+alias ....="cd ../../../.."
+alias .....="cd ../../../../.."
+alias ......="cd ../../../../../.."
+alias .......="cd ../../../../../../.."
+alias ........="cd ../../../../../../../.."
+alias .........="cd ../../../../../../../../.."
