@@ -32,7 +32,8 @@ for args in "$@" ; do
         tmate \
         tmux \
         mosh \
-        tree
+        tree \
+        keychain
       sudo apt-get install -t jessie-backports \
         golang \
         tmate
