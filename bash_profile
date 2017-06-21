@@ -18,7 +18,7 @@ if [[ "$HOME" == *"termux"* ]] ; then
   export PS1="\w$ "
   source `which source-ssh-agent`
 else
-  if [[ "$(uname)" == "linux" ]] ; then
+  if [[ "$(uname)" == "Linux" ]] ; then
     if which keychain >/dev/null ; then
       eval $(keychain --quiet --eval)
     fi
