@@ -55,7 +55,8 @@ for args in "$@" ; do
         ~/.vimrc \
         ~/.config/nvim/init.vim \
         ~/.gitconfig \
-        ~/.bash_profile
+        ~/.bash_profile \
+        ~/work/bash-git-prompt/themes/p2.bgptheme
       ;;
     init)
       curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -64,9 +65,10 @@ for args in "$@" ; do
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       mkdir -p ~/.config/nvim/
       ln -s ~/.vimrc ~/.config/nvim/init.vim
-      ln -s $HOME/work/dot-files/vim/vimrc ~/.vimrc
-      ln -s $HOME/work/dot-files/gitconfig ~/.gitconfig
-      ln -s $HOME/work/dot-files/bash_profile ~/.bash_profile
+      ln -s ~/work/dot-files/vim/vimrc ~/.vimrc
+      ln -s ~/work/dot-files/gitconfig ~/.gitconfig
+      ln -s ~/work/dot-files/bash_profile ~/.bash_profile
+      ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme ~/work/bash-git-prompt/themes/p2.bgptheme
       source ~/.bash_profile
       vim -c PlugInstall -c q -c q
       vim -c GoInstallBinaries -c q -c q
@@ -92,6 +94,8 @@ for args in "$@" ; do
         mkdir -p ~/work
         cd ~/work
         [[ ! -e dot-files ]] && git clone git@github.com:pfcarrier/dot-files.git
+        [[ ! -e bash-git-prompt ]] \
+          && git clone git@github.com:magicmonty/bash-git-prompt.git
         true # prevent sub shell return code to be false from the last "if"
       )
       ;;

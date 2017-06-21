@@ -26,12 +26,9 @@ fi
 
 # Load and copy gitprompt profile to correct location on mac
 #
-if [[ "$(uname)" == "Darwin" ]] ; then
-  if [ -f /usr/local/share/gitprompt.sh ]; then
-    cp /usr/local/share/themes/p2.bgptheme /usr/local/Cellar/bash-git-prompt/*/share/themes/
-    GIT_PROMPT_THEME=p2
-    . /usr/local/share/gitprompt.sh
-  fi
+if [[ -f ~/work/bash-git-prompt/gitprompt.sh ]] ; then
+  GIT_PROMPT_THEME=p2
+  source ~/work/bash-git-prompt/gitprompt.sh
 fi
 
 ## quickly update/re-install dot-files
