@@ -71,11 +71,11 @@ for args in "$@" ; do
       ln -s ~/work/dot-files/bash_profile ~/.bash_profile
       ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme ~/work/bash-git-prompt/themes/p2.bgptheme
       source ~/.bash_profile
-      vim -c PlugInstall -c q -c q
-      vim -c GoInstallBinaries -c q -c q
+      bash -c "</dev/tty vim -c PlugInstall -c q -c q"
+      bash -c "</dev/tty vim -c GoInstallBinaries -c q -c q"
       if which nvim &>/dev/null ; then
-        nvim -c PlugInstall -c q -c q
-        nvim -c GoInstallBinaries -c q -c q
+        bash -c "</dev/tty nvim -c PlugInstall -c q -c q"
+        bash -c "</dev/tty nvim -c GoInstallBinaries -c q -c q"
       fi
       #vim -E -c GoUpdateBinaries -c q -c q
       #nvim -E -c GoUpdateBinaries -c q -c q
