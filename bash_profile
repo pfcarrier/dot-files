@@ -4,7 +4,6 @@ export EDITOR=vim
 alias vi=vim
 #alias vim=nvim
 alias ls='ls --color=auto'
-alias grep='grep --color=auto'
 
 ## On MacOS use gnu-ls instead BSD ls
 #
@@ -49,17 +48,14 @@ fi
 ## quickly update/re-install dot-files
 #
 function dotfiles(){
-  if [[ "$(uname)" == "Linux" ]] ; then
-    OS=linux
-  else
-    OS=macos
-  fi
-
   case "$1" in
     install)
       (
         set -x
-        bash ~/work/dot-files/install ${OS}
+        cd ~/work/dot-files/
+        git fetch \
+          && git rebase \
+          && bash ~/work/dot-files/install all
         exit 0
       )
       ;;
@@ -67,8 +63,7 @@ function dotfiles(){
       (
         set -x
         cd ~/work/dot-files/
-        git fetch ; git rebase
-        bash ~/work/dot-files/install ${OS}
+        git fetch && git rebase
       )
       ;;
     *)
@@ -76,12 +71,16 @@ function dotfiles(){
       exit 1
       ;;
   esac
+  echo
+  echo "REMINDER: Issue 'exec bash -l' to reload your profile"
 }
 
 # don't put duplicate lines or lines starting with space in the history.
 # # See bash(1) for more options
 #
 HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # append to the history file, don't overwrite it
 #
@@ -90,11 +89,6 @@ shopt -s histappend
 # Correct spelling mistake on cd command
 #
 shopt -s cdspell
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-#
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
