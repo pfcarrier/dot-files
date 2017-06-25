@@ -51,7 +51,6 @@ for args in "$@" ; do
             vim \
             curl \
             git \
-            tmate \
             tmux \
             mosh \
             tree \
