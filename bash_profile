@@ -87,6 +87,10 @@ HISTCONTROL=ignoreboth
 #
 shopt -s histappend
 
+# Correct spelling mistake on cd command
+#
+shopt -s cdspell
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 #
 HISTSIZE=1000
