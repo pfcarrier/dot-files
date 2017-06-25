@@ -60,7 +60,7 @@ for args in "$@" ; do
             tmate
           ;;
         macos)
-          brew install \
+          brew install --upgrade \
             coreutils \
             vim \
             neovim/neovim/neovim \
