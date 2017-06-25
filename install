@@ -2,54 +2,87 @@
 
 if [[ -z "$1" ]] ; then
   echo "FATAL: args required.  You likely want to run"
-  echo "       $0 apt-debian repos clean init"
+  echo "       $0 all"
   exit 1
 fi
+
+case "$(uname)" in
+  Linux)
+    if [[ "$HOME" == *"termux"* ]] ; then
+      OS=termux
+    elif [[ -e /etc/debian_version ]] ; then
+      OS=debian
+    else
+      echo "FATAL: unknown OS"
+      exit 1
+    fi
+    ;;
+  Darwin)
+    OS=macos
+    ;;
+  *)
+    echo "FATAL: unknown OS"
+    exit 1
+    ;;
+esac
 
 set -exo pipefail
 
 for args in "$@" ; do
   case "${args}" in
-    apt-termux)
-      apt-get update
-      apt-get install -y \
-        vim \
-        neovim \
-        curl \
-        golang \
-        git \
-        tmate \
-        tmux \
-        mosh \
-        tree
+    dep)
+      case "${OS}" in
+        termux)
+          apt-get update
+          apt-get install -y \
+            vim \
+            neovim \
+            curl \
+            golang \
+            git \
+            tmate \
+            tmux \
+            mosh \
+            tree
+          ;;
+        debian)
+          sudo apt-get update
+          sudo apt-get install -y \
+            vim \
+            curl \
+            git \
+            tmux \
+            mosh \
+            tree \
+            keychain
+          sudo apt-get install -t jessie-backports \
+            golang \
+            tmate
+          ;;
+        macos)
+          brew install --upgrade \
+            coreutils \
+            vim \
+            neovim/neovim/neovim \
+            curl \
+            golang \
+            git \
+            tmate \
+            tmux \
+            mosh \
+            tree
+          ;;
+      esac
       ;;
-    apt-debian)
-      sudo apt-get update
-      sudo apt-get install -y \
-        vim \
-        curl \
-        git \
-        tmate \
-        tmux \
-        mosh \
-        tree \
-        keychain
-      sudo apt-get install -t jessie-backports \
-        golang \
-        tmate
-      ;;
-    brew)
-      brew install \
-        coreutils \
-        vim \
-        neovim/neovim/neovim \
-        curl \
-        golang \
-        git \
-        tmate \
-        tmux \
-        mosh \
-        tree
+    repos)
+      (
+        mkdir -p ~/work
+        cd ~/work
+        [[ ! -e dot-files ]] && git clone git@github.com:pfcarrier/dot-files.git
+        [[ ! -e bash-git-prompt ]] \
+          && git clone git@github.com:magicmonty/bash-git-prompt.git
+        true # prevent sub shell return code to be false from the last "if"
+      )
       ;;
     clean)
       rm -f \
@@ -69,7 +102,8 @@ for args in "$@" ; do
       ln -s ~/work/dot-files/vim/vimrc ~/.vimrc
       ln -s ~/work/dot-files/gitconfig ~/.gitconfig
       ln -s ~/work/dot-files/bash_profile ~/.bash_profile
-      ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme ~/work/bash-git-prompt/themes/p2.bgptheme
+      ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme \
+        ~/work/bash-git-prompt/themes/p2.bgptheme
       source ~/.bash_profile
       bash -c "</dev/tty vim -c PlugInstall -c q -c q"
       bash -c "</dev/tty vim -c GoInstallBinaries -c q -c q"
@@ -80,25 +114,8 @@ for args in "$@" ; do
       #vim -E -c GoUpdateBinaries -c q -c q
       #nvim -E -c GoUpdateBinaries -c q -c q
       ;;
-    linux)
-      if [[ "$HOME" == *"termux"* ]] ; then
-        exec bash $0 apt-termux repos clean init
-      else
-        exec bash $0 apt-debian repos clean init
-      fi
-      ;;
-    macos)
-      exec bash $0 brew repos clean init
-      ;;
-    repos)
-      (
-        mkdir -p ~/work
-        cd ~/work
-        [[ ! -e dot-files ]] && git clone git@github.com:pfcarrier/dot-files.git
-        [[ ! -e bash-git-prompt ]] \
-          && git clone git@github.com:magicmonty/bash-git-prompt.git
-        true # prevent sub shell return code to be false from the last "if"
-      )
+    all)
+      exec bash $0 dep repos clean init
       ;;
     *)
       echo "FATAL:  unknown option '$args'"
