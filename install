@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -exo pipefail
+
 if [[ -z "$1" ]] ; then
   echo "FATAL: args required.  You likely want to run"
   echo "       $0 all"
@@ -26,96 +28,113 @@ case "$(uname)" in
     ;;
 esac
 
-set -exo pipefail
+function dep(){
+  case "${OS}" in
+    termux)
+      apt-get update
+      apt-get install -y \
+        vim \
+        neovim \
+        curl \
+        golang \
+        git \
+        tmate \
+        tmux \
+        mosh \
+        tree
+      ;;
+    debian)
+      sudo apt-get update
+      sudo apt-get install -y \
+        vim \
+        curl \
+        git \
+        tmux \
+        mosh \
+        tree \
+        keychain
+      sudo apt-get install -t jessie-backports \
+        golang \
+        tmate
+      ;;
+    macos)
+      brew install --upgrade \
+        coreutils \
+        vim \
+        neovim/neovim/neovim \
+        curl \
+        golang \
+        git \
+        tmate \
+        tmux \
+        mosh \
+        tree
+      ;;
+  esac
+}
+
+function repos(){
+  (
+    mkdir -p ~/work
+    cd ~/work
+    [[ ! -e dot-files ]] && git clone git@github.com:pfcarrier/dot-files.git
+    [[ ! -e bash-git-prompt ]] \
+      && git clone git@github.com:magicmonty/bash-git-prompt.git
+    true # prevent sub shell return code to be false from the last "if"
+  )
+}
+
+function clean(){
+  rm -f \
+    ~/.vimrc \
+    ~/.config/nvim/init.vim \
+    ~/.gitconfig \
+    ~/.bash_profile \
+    ~/work/bash-git-prompt/themes/p2.bgptheme
+}
+
+function init(){
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  mkdir -p ~/.config/nvim/
+  ln -s ~/.vimrc ~/.config/nvim/init.vim
+  ln -s ~/work/dot-files/vim/vimrc ~/.vimrc
+  ln -s ~/work/dot-files/gitconfig ~/.gitconfig
+  ln -s ~/work/dot-files/bash_profile ~/.bash_profile
+  ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme \
+    ~/work/bash-git-prompt/themes/p2.bgptheme
+  source ~/.bash_profile
+  bash -c "</dev/tty vim -c PlugInstall -c q -c q"
+  bash -c "</dev/tty vim -c GoInstallBinaries -c q -c q"
+  if which nvim &>/dev/null ; then
+    bash -c "</dev/tty nvim -c PlugInstall -c q -c q"
+    bash -c "</dev/tty nvim -c GoInstallBinaries -c q -c q"
+  fi
+  #vim -E -c GoUpdateBinaries -c q -c q
+  #nvim -E -c GoUpdateBinaries -c q -c q
+}
 
 for args in "$@" ; do
   case "${args}" in
     dep)
-      case "${OS}" in
-        termux)
-          apt-get update
-          apt-get install -y \
-            vim \
-            neovim \
-            curl \
-            golang \
-            git \
-            tmate \
-            tmux \
-            mosh \
-            tree
-          ;;
-        debian)
-          sudo apt-get update
-          sudo apt-get install -y \
-            vim \
-            curl \
-            git \
-            tmux \
-            mosh \
-            tree \
-            keychain
-          sudo apt-get install -t jessie-backports \
-            golang \
-            tmate
-          ;;
-        macos)
-          brew install --upgrade \
-            coreutils \
-            vim \
-            neovim/neovim/neovim \
-            curl \
-            golang \
-            git \
-            tmate \
-            tmux \
-            mosh \
-            tree
-          ;;
-      esac
+      dep
       ;;
     repos)
-      (
-        mkdir -p ~/work
-        cd ~/work
-        [[ ! -e dot-files ]] && git clone git@github.com:pfcarrier/dot-files.git
-        [[ ! -e bash-git-prompt ]] \
-          && git clone git@github.com:magicmonty/bash-git-prompt.git
-        true # prevent sub shell return code to be false from the last "if"
-      )
+      repos
       ;;
     clean)
-      rm -f \
-        ~/.vimrc \
-        ~/.config/nvim/init.vim \
-        ~/.gitconfig \
-        ~/.bash_profile \
-        ~/work/bash-git-prompt/themes/p2.bgptheme
+      clean
       ;;
     init)
-      curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      mkdir -p ~/.config/nvim/
-      ln -s ~/.vimrc ~/.config/nvim/init.vim
-      ln -s ~/work/dot-files/vim/vimrc ~/.vimrc
-      ln -s ~/work/dot-files/gitconfig ~/.gitconfig
-      ln -s ~/work/dot-files/bash_profile ~/.bash_profile
-      ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme \
-        ~/work/bash-git-prompt/themes/p2.bgptheme
-      source ~/.bash_profile
-      bash -c "</dev/tty vim -c PlugInstall -c q -c q"
-      bash -c "</dev/tty vim -c GoInstallBinaries -c q -c q"
-      if which nvim &>/dev/null ; then
-        bash -c "</dev/tty nvim -c PlugInstall -c q -c q"
-        bash -c "</dev/tty nvim -c GoInstallBinaries -c q -c q"
-      fi
-      #vim -E -c GoUpdateBinaries -c q -c q
-      #nvim -E -c GoUpdateBinaries -c q -c q
+      init
       ;;
     all)
-      exec bash $0 dep repos clean init
+      dep
+      repos
+      clean
+      init
       ;;
     *)
       echo "FATAL:  unknown option '$args'"

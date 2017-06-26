@@ -10,7 +10,7 @@ afterward.
 #### Debian, Termux or MacOS
   ```
   curl "https://raw.githubusercontent.com/pfcarrier/dot-files/master/install" \
-    | bash -s -- dep repos clean init
+    | bash -s -- all
   exec bash -l
   ```
 
