@@ -8,7 +8,7 @@ alias ls='ls --color=auto'
 ## On MacOS use gnu-ls instead BSD ls
 #
 if [[ "$(uname)" == "Darwin" ]] ; then
-  which gls &>/dev/null && alias ls=gls
+  which gls &>/dev/null && alias ls="gls --color"
 fi
 
 ## Special profile item for termux usage
