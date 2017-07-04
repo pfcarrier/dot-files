@@ -13,6 +13,7 @@ source $HOME/work/dot-files/vim/plug.vim
 " ================ General Config ====================
 
 set number                      " Display line number
+set ruler                       " Display line number in vim statusbar
 set relativenumber              " ... relative to cursor location
 set backspace=indent,eol,start  " Makes backspace key more powerful
 set history=1000                " Store more :cmdline history
@@ -47,6 +48,16 @@ set expandtab
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
+
+" Set SpecialKey group visible characters to display in color
+" SpecialKey group apply to trail, tab and nbsp
+highlight SpecialKey ctermfg=black ctermbg=white
+
+" Display visual cue past colum 80
+"set colorcolumn=80
+highlight ColorColumn ctermfg=white ctermbg=lightgreen
+highlight OverLength ctermbg=red ctermfg=white
+match OverLength /\%>80v.\+/
 
 "set nowrap       "Don't wrap lines
 "set linebreak    "Wrap lines at convenient points
@@ -87,11 +98,6 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescroll=1        " Activate sidescroll
 set sidescrolloff=15    "Start scorlling when we're 15 char from end of line"
 
-" ======== Display a visual clue past col 80 ========
-set colorcolumn=80
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%>80v.\+/
-
 " From Jerome
 set sw=2
 set laststatus=2
@@ -102,8 +108,8 @@ set showmatch
 "set list " show all hidden character
 
 " From thomas
-set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,    case-sensitive otherwise
+set smartcase     " ignore case if search pattern is all lowercase
+                  " case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 
@@ -123,8 +129,8 @@ let g:go_metalinter_deadline = "5s"
 "let g:rehash256 = 1
 "let g:molokai_original = 1
 "colorscheme molokai
-colorscheme solarized
-set background=light
+"colorscheme solarized
+"set background=light
 "set background=dark
 
 source $HOME/work/dot-files/vim/keymaps.vim
@@ -134,4 +140,3 @@ set nocursorcolumn              " Do not highlight column (speeds up highlightin
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
 set ttyfast                     " Indicate fast terminal conn for faster redraw
-
