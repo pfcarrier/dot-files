@@ -51,7 +51,7 @@ set list listchars=tab:\ \ ,trail:·
 
 " Set SpecialKey group visible characters to display in color
 " SpecialKey group apply to trail, tab and nbsp
-highlight SpecialKey ctermfg=black ctermbg=white
+" highlight SpecialKey ctermfg=black ctermbg=white
 
 " Display visual cue past colum 80
 "set colorcolumn=80
