@@ -10,11 +10,17 @@ set nomodeline
 " Load vim-plug
 source $HOME/work/dot-files/vim/plug.vim
 
+" Turn off Ex mode
+nnoremap Q <nop>
+
+" ================ Status line =======================
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
 " ================ General Config ====================
 
 set number                      " Display line number
-set ruler                       " Display line number in vim statusbar
-set relativenumber              " ... relative to cursor location
+set ruler                       " Display line count in vim statusline
+"set relativenumber              " ... relative to cursor location
 set backspace=indent,eol,start  " Makes backspace key more powerful
 set history=1000                " Store more :cmdline history
 set showcmd                     " Show incomplete cmds down the bottom
