@@ -4,13 +4,21 @@
 [push]
 	default = simple
 [alias]
-  co = checkout
+  c = checkout
   ci = commit
-  st = status
-  br = branch
+  s = status
+  b = branch
+  p = push origin HEAD
+  l = log --stat
+  d = diff --color
+  a = add -p
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   type = cat-file -t
   dump = cat-file -p
   ls = log --stat --pretty=short --graph
 [color]
   ui = true
+[web]
+  browser = google-chrome
+[diff]
+  context = 20
