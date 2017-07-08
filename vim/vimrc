@@ -58,8 +58,13 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
-" Display tabs and trailing spaces visually
+" ================ Highlight trailing ===============
 set list listchars=tab:\ \ ,trail:·
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " Set SpecialKey group visible characters to display in color
 " SpecialKey group apply to trail, tab and nbsp
