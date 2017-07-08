@@ -14,12 +14,14 @@ source $HOME/work/dot-files/vim/plug.vim
 nnoremap Q <nop>
 
 " ================ Status line =======================
+"set statusline=%<%f\ %h%m%r%=%{fugitive#statusline()}\ \ \ \ \ \ \ \ \ %-14.(%l,%c%V%)\ %P
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set laststatus=2                " Always display statusline vs only when split
+set ruler                       " Display line count in vim statusline
 
 " ================ General Config ====================
 
 set number                      " Display line number
-set ruler                       " Display line count in vim statusline
 "set relativenumber              " ... relative to cursor location
 set backspace=indent,eol,start  " Makes backspace key more powerful
 set history=1000                " Store more :cmdline history
@@ -29,6 +31,10 @@ set visualbell                  " No sounds
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
 set autowrite                   " Automatically save before :next, :make etc.
+syntax on
+set showmatch                   " Highlight matching bracket when inserting one
+"set list                       " show all hidden character
+
 
 
 " This makes vim act like all other editors, buffers can
@@ -65,6 +71,9 @@ highlight ColorColumn ctermfg=white ctermbg=lightgreen
 highlight OverLength ctermbg=red ctermfg=white
 match OverLength /\%>80v.\+/
 
+" Set number colum to be black
+"highlight LineNr ctermfg=black
+
 "set nowrap       "Don't wrap lines
 "set linebreak    "Wrap lines at convenient points
 
@@ -100,20 +109,11 @@ augroup END
 
 " ================ Scrolling ========================
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescroll=1        " Activate sidescroll
-set sidescrolloff=15    "Start scorlling when we're 15 char from end of line"
+set sidescrolloff=15    " Start scorlling when we're 15 char from end of line"
 
-" From Jerome
-set sw=2
-set laststatus=2
-syntax on
-set showmatch
-"set listchars=tab:▸\ ,trail:.
-"set smarttab
-"set list " show all hidden character
-
-" From thomas
+" ================= Search ==========================
 set smartcase     " ignore case if search pattern is all lowercase
                   " case-sensitive otherwise
 set hlsearch      " highlight search terms
