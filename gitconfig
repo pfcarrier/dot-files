@@ -4,6 +4,7 @@
 [push]
 	default = simple
 [alias]
+  fr = !git fetch && git rebase --autostash FETCH_HEAD
   c = checkout
   ci = commit
   s = status
