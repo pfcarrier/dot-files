@@ -90,7 +90,8 @@ function clean(){
     ~/.config/nvim/init.vim \
     ~/.gitconfig \
     ~/.bash_profile \
-    ~/work/bash-git-prompt/themes/p2.bgptheme
+    ~/work/bash-git-prompt/themes/p2.bgptheme \
+    ~/.tmux.conf
 }
 
 function init(){
@@ -102,6 +103,7 @@ function init(){
   ln -s ~/.vimrc ~/.config/nvim/init.vim
   ln -s ~/work/dot-files/vim/vimrc ~/.vimrc
   ln -s ~/work/dot-files/gitconfig ~/.gitconfig
+  ln -s ~/work/dot-files/tmux.conf ~/.tmux.conf
   ln -s ~/work/dot-files/bash_profile ~/.bash_profile
   ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme \
     ~/work/bash-git-prompt/themes/p2.bgptheme
