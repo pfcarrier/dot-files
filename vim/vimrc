@@ -24,16 +24,14 @@ set showmode                    " Show current mode down the bottom
 set showmatch                   " Highlight matching bracket when inserting one
 set visualbell                  " No sounds
 set autowrite                   " Automatically save before :next, :make etc.
+set hidden                      " buffers can exist in the background
+                                " http://items.sjbach.com/319/configuring-vim-right
 
 " ============== Syntax highlighting ================
+
 syntax on                       " Turn on syntax highlighting
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
 
 " ================ Turn Off Swap Files ==============
 
@@ -82,22 +80,26 @@ augroup resCur
 augroup END
 
 " =================== Scrolling =====================
+
 set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescroll=1        " Activate sidescroll
 set sidescrolloff=15    " Start scorlling when we're 15 char from end of line"
 
 " ===================== Search ======================
+
 set smartcase     " ignore case if search pattern is all lowercase
                   " case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 
 " ===================== NERDTree ====================
+
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeMouseMode=2
 
 " ====================== vim-go =====================
+
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"     " Only use quickfix list to rise issue
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
@@ -106,6 +108,7 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "5s"
 
 " ====================== Theme ======================
+
 "colorscheme molokai
 "set t_Co=256
 "let g:rehash256 = 1
@@ -119,11 +122,13 @@ let g:go_metalinter_deadline = "5s"
 "highlight LineNr ctermfg=black    " Set number colum to be black
 
 " ================ Status line =======================
+
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2                " Always display statusline vs only when split
 set ruler                       " Display line count in vim statusline
 
 " ============== Highlight trailing space ===========
+
 set list listchars=tab:\ \ ,trail:·
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -133,18 +138,21 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " ============ Visual cue past colum 80 =============
+
 "set colorcolumn=80
 "highlight ColorColumn ctermfg=white ctermbg=lightgreen
 highlight OverLength ctermbg=red ctermfg=white
 match OverLength /\%>80v.\+/
 
 " ================= Speedup redraw ==================
+
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 
 " =================== Auto-reload ===================
+
 aug AutoloadVimrc
   au!
   au BufWritePost ~/work/dot-files/vim/vimrc source $MYVIMRC
@@ -154,8 +162,10 @@ aug AutoloadVimrc
 aug END
 
 " =========== Extend % match capabilities ===========
+
 runtime macros/matchit.vim
 
 " ==================== source =======================
+
 source $HOME/work/dot-files/vim/keymaps.vim
 source $HOME/work/dot-files/vim/abbreviations.vim
