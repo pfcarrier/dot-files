@@ -1,3 +1,12 @@
+" =============== Auto-reload ===============
+aug AutoloadVimrc
+  au!
+  au BufWritePost ~/work/dot-files/vim/vimrc source $MYVIMRC
+  au BufWritePost ~/work/dot-files/vim/abbreviations.vim source $MYVIMRC
+  au BufWritePost ~/work/dot-files/vim/keymaps.vim source $MYVIMRC
+  au BufWritePost ~/work/dot-files/vim/plug.vim source $MYVIMRC
+aug END
+
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
 set nocompatible
