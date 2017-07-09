@@ -26,6 +26,9 @@ set visualbell                  " No sounds
 set autowrite                   " Automatically save before :next, :make etc.
 set hidden                      " buffers can exist in the background
                                 " http://items.sjbach.com/319/configuring-vim-right
+set wildmenu                    " Make tab completion in command mode more useful
+set wildmode=list:longest       " Complete up to the point of ambiguity
+set title                       " Update xterm title
 
 " ============== Syntax highlighting ================
 
@@ -89,6 +92,7 @@ set sidescrolloff=15    " Start scorlling when we're 15 char from end of line"
 
 set smartcase     " ignore case if search pattern is all lowercase
                   " case-sensitive otherwise
+set ignorecase    " ... keep * search to be case sensitive
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 

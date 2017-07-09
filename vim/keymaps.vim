@@ -8,6 +8,10 @@ let mapleader=" "
 " Make comma an alias for leader, as some people prefer this.
 nmap , <leader>
 
+" Remap ` to ' for more efficient use of 'ma'/'`a'
+nnoremap ' `
+nnoremap ` '
+
 " CtrlP Helpers
 nmap <C-P> <esc>:CtrlP <CR>
 nnoremap <silent> <Leader>p :CtrlPBuffer<CR>
