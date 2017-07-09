@@ -1,5 +1,5 @@
 " Quick exit of insert mode
-"inoremap jj <Esc>
+inoremap jj <Esc>
 
 " Define space as the leader key
 nnoremap <SPACE> <Nop>

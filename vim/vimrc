@@ -1,35 +1,17 @@
-" =============== Auto-reload ===============
-aug AutoloadVimrc
-  au!
-  au BufWritePost ~/work/dot-files/vim/vimrc source $MYVIMRC
-  au BufWritePost ~/work/dot-files/vim/abbreviations.vim source $MYVIMRC
-  au BufWritePost ~/work/dot-files/vim/keymaps.vim source $MYVIMRC
-  au BufWritePost ~/work/dot-files/vim/plug.vim source $MYVIMRC
-aug END
-
-" ======= Extend % match capabilities =======
-runtime macros/matchit.vim
-
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 set nomodeline
 
 " Ensure vim display correctly UTF-8 character
-:set encoding=utf-8
-:set fileencoding=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
 
 " Load vim-plug
 source $HOME/work/dot-files/vim/plug.vim
 
 " Turn off Ex mode
 nnoremap Q <nop>
-
-" ================ Status line =======================
-"set statusline=%<%f\ %h%m%r%=%{fugitive#statusline()}\ \ \ \ \ \ \ \ \ %-14.(%l,%c%V%)\ %P
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-set laststatus=2                " Always display statusline vs only when split
-set ruler                       " Display line count in vim statusline
 
 " ================ General Config ====================
 
@@ -39,15 +21,14 @@ set backspace=indent,eol,start  " Makes backspace key more powerful
 set history=1000                " Store more :cmdline history
 set showcmd                     " Show incomplete cmds down the bottom
 set showmode                    " Show current mode down the bottom
+set showmatch                   " Highlight matching bracket when inserting one
 set visualbell                  " No sounds
+set autowrite                   " Automatically save before :next, :make etc.
+
+" ============== Syntax highlighting ================
+syntax on                       " Turn on syntax highlighting
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
-set autowrite                   " Automatically save before :next, :make etc.
-syntax on
-set showmatch                   " Highlight matching bracket when inserting one
-"set list                       " show all hidden character
-
-
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -70,37 +51,13 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
-" ================ Highlight trailing ===============
-set list listchars=tab:\ \ ,trail:·
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-" Set SpecialKey group visible characters to display in color
-" SpecialKey group apply to trail, tab and nbsp
-" highlight SpecialKey ctermfg=black ctermbg=white
-
-" Display visual cue past colum 80
-"set colorcolumn=80
-highlight ColorColumn ctermfg=white ctermbg=lightgreen
-highlight OverLength ctermbg=red ctermfg=white
-match OverLength /\%>80v.\+/
-
-" Set number colum to be black
-"highlight LineNr ctermfg=black
-
-"set nowrap       "Don't wrap lines
-"set linebreak    "Wrap lines at convenient points
-
 " ================ Folds ============================
 
 set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
 set nofoldenable        "dont fold by default
 
-" ============== Remember Cursor location ===========
+" ============ Remember Cursor location =============
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -125,7 +82,6 @@ augroup resCur
 augroup END
 
 " =================== Scrolling =====================
-
 set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescroll=1        " Activate sidescroll
 set sidescrolloff=15    " Start scorlling when we're 15 char from end of line"
@@ -150,19 +106,56 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "5s"
 
 " ====================== Theme ======================
+"colorscheme molokai
+"set t_Co=256
 "let g:rehash256 = 1
 "let g:molokai_original = 1
-"colorscheme molokai
+
 "colorscheme solarized
+"set t_Co=256
 "let g:solarized_termcolors=256
 "set background=light
-"set background=dark
 
-source $HOME/work/dot-files/vim/keymaps.vim
-source $HOME/work/dot-files/vim/abbreviations.vim
+"highlight LineNr ctermfg=black    " Set number colum to be black
 
-" ================= Speed up redraw =================
+" ================ Status line =======================
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set laststatus=2                " Always display statusline vs only when split
+set ruler                       " Display line count in vim statusline
+
+" ============== Highlight trailing space ===========
+set list listchars=tab:\ \ ,trail:·
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" ============ Visual cue past colum 80 =============
+"set colorcolumn=80
+"highlight ColorColumn ctermfg=white ctermbg=lightgreen
+highlight OverLength ctermbg=red ctermfg=white
+match OverLength /\%>80v.\+/
+
+" ================= Speedup redraw ==================
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
 set ttyfast                     " Indicate fast terminal conn for faster redraw
+
+" =================== Auto-reload ===================
+aug AutoloadVimrc
+  au!
+  au BufWritePost ~/work/dot-files/vim/vimrc source $MYVIMRC
+  au BufWritePost ~/work/dot-files/vim/abbreviations.vim source $MYVIMRC
+  au BufWritePost ~/work/dot-files/vim/keymaps.vim source $MYVIMRC
+  au BufWritePost ~/work/dot-files/vim/plug.vim source $MYVIMRC
+aug END
+
+" =========== Extend % match capabilities ===========
+runtime macros/matchit.vim
+
+" ==================== source =======================
+source $HOME/work/dot-files/vim/keymaps.vim
+source $HOME/work/dot-files/vim/abbreviations.vim
