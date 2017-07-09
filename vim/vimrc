@@ -7,6 +7,9 @@ aug AutoloadVimrc
   au BufWritePost ~/work/dot-files/vim/plug.vim source $MYVIMRC
 aug END
 
+" ======= Extend % match capabilities =======
+runtime macros/matchit.vim
+
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -121,24 +124,24 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-" ================ Scrolling ========================
+" =================== Scrolling =====================
 
 set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescroll=1        " Activate sidescroll
 set sidescrolloff=15    " Start scorlling when we're 15 char from end of line"
 
-" ================= Search ==========================
+" ===================== Search ======================
 set smartcase     " ignore case if search pattern is all lowercase
                   " case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 
-"NERDTree settings
+" ===================== NERDTree ====================
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeMouseMode=2
 
-" vim-go settings
+" ====================== vim-go =====================
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"     " Only use quickfix list to rise issue
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
@@ -146,6 +149,7 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "5s"
 
+" ====================== Theme ======================
 "let g:rehash256 = 1
 "let g:molokai_original = 1
 "colorscheme molokai
@@ -157,6 +161,7 @@ let g:go_metalinter_deadline = "5s"
 source $HOME/work/dot-files/vim/keymaps.vim
 source $HOME/work/dot-files/vim/abbreviations.vim
 
+" ================= Speed up redraw =================
 set nocursorcolumn              " Do not highlight column (speeds up highlighting)
 set nocursorline                " Do not highlight cursor (speeds up highlighting)
 set lazyredraw                  " Wait to redraw
