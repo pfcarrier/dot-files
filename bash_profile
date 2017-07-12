@@ -7,7 +7,7 @@ alias ls='ls --color=auto'
 
 ## Set vi bash mode
 #
-set -o vi
+#set -o vi
 
 ## On MacOS use gnu-ls instead BSD ls
 #
