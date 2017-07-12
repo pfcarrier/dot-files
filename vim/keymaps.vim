@@ -97,8 +97,13 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 "autocmd FileType go nmap <leader>b :GoBuild<CR>
 
 " ==================== Reminder =======================
-" :tabnew -- newtab
+"
+" :tabnew -- newtab or ctrl+n
 " 2gt     -- go to tab 2
+" <tab>   -- next tab
+" vs file -- vertical split open 'file'
+" sp file -- horizontal split open 'file'
+" <shift><tab> -- previous tab
 " <leader>n       -- toggel NERDTreeTabs
 " t       -- NERD -> open file in a new tab
 " T       -- NERD -> open file in a new tab, stay in NERD
@@ -122,6 +127,8 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 " C-n       -- new tab
 " tab       -- next tab
 " S-tab     -- previous tab
+" <space><space> -- remove search highlight
+" igv
 
 " Hide/unhide number
 :nmap <leader>nn :set invnumber<CR>:set invrelativenumber<CR>
