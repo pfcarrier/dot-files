@@ -137,9 +137,13 @@ aug QFClose
 "let g:rehash256 = 1
 
 "set t_Co=16
-colorscheme solarized
-set background=light
 "let g:solarized_termcolors=256
+
+" Load colorscheme unless on host 'avatar'
+if hostname() != 'avatar'
+  colorscheme solarized
+  set background=light
+endif
 
 "highlight LineNr ctermbg=grey    " Set number colum to be black
 
