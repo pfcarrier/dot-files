@@ -155,7 +155,8 @@ set ruler                       " Display line count in vim statusline
 
 " ============== Highlight trailing space ===========
 
-"set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:\ \ ,trail:·
+highlight SpecialKey ctermbg=NONE guibg=NONE
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -164,7 +165,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " ============ Visual cue past colum 80 =============
-"
+
 set colorcolumn=80
 "highlight ColorColumn ctermfg=white ctermbg=lightgreen
 "highlight OverLength ctermbg=red ctermfg=grey

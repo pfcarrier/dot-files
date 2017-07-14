@@ -135,7 +135,7 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 :nmap <leader>nnn :set relativenumber!<CR>
 
 " Switch background light/dark
-map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:highlight SpecialKey ctermbg=NONE guibg=NONE<CR>:highlight ExtraWhitespace ctermbg=red guibg=red<CR>
 
 " Switch colorscheme solarized/molokai
 map <Leader>co :let &colorscheme = ( &colorscheme == "solarized"? "molokai" : "solarized" )<CR>
@@ -156,7 +156,7 @@ map <leader>co :call ToggleDimTags()<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 
 nmap <leader>s :TagbarToggle<CR>
-let g:tagbar_type_go = {  
+let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
         \ 'p:package',
