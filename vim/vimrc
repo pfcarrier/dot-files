@@ -23,12 +23,13 @@ set showcmd                     " Show incomplete cmds down the bottom
 set showmode                    " Show current mode down the bottom
 set showmatch                   " Highlight matching bracket when inserting one
 set visualbell                  " No sounds
-set autowrite                   " Automatically save before :next, :make etc.
+set autowrite                   " Automatically save before :next, :make etc
 set hidden                      " buffers can exist in the background
                                 " http://items.sjbach.com/319/configuring-vim-right
-set wildmenu                    " Make tab completion in command mode more useful
+set wildmenu                    " Make tab completion in command mode useful
 set wildmode=list:longest       " Complete up to the point of ambiguity
 set title                       " Update xterm title
+set nolinebreak                 " disable automatic line break
 
 " ============== Syntax highlighting ================
 
@@ -111,19 +112,31 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "5s"
 
+" =============== Quickfix windows  =================
+
+" Enable wrap line in quickfix windows
+augroup quickfix
+    autocmd!
+    autocmd FileType qf setlocal wrap
+augroup END
+
+" Auto-close quickfix on :q
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+
 " ====================== Theme ======================
 
 "colorscheme molokai
+"let g:molokai_original = 1
 "set t_Co=256
 "let g:rehash256 = 1
-"let g:molokai_original = 1
 
-"colorscheme solarized
-"set t_Co=256
+colorscheme solarized
+set background=light
 "let g:solarized_termcolors=256
-"set background=light
 
-"highlight LineNr ctermfg=black    " Set number colum to be black
+"highlight LineNr ctermbg=grey    " Set number colum to be black
 
 " ================ Status line =======================
 
@@ -133,7 +146,7 @@ set ruler                       " Display line count in vim statusline
 
 " ============== Highlight trailing space ===========
 
-set list listchars=tab:\ \ ,trail:·
+"set list listchars=tab:\ \ ,trail:·
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -142,16 +155,17 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " ============ Visual cue past colum 80 =============
-
-"set colorcolumn=80
+"
+set colorcolumn=80
 "highlight ColorColumn ctermfg=white ctermbg=lightgreen
-highlight OverLength ctermbg=red ctermfg=white
-match OverLength /\%>80v.\+/
+"highlight OverLength ctermbg=red ctermfg=grey
+"match OverLength /\%>80v.\+/
+"match ErrorMsg '\%>80v.\+'
 
 " ================= Speedup redraw ==================
 
-set nocursorcolumn              " Do not highlight column (speeds up highlighting)
-set nocursorline                " Do not highlight cursor (speeds up highlighting)
+set nocursorcolumn              " Do not highlight column
+set nocursorline                " Do not highlight cursor
 set lazyredraw                  " Wait to redraw
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 

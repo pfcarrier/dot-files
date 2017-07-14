@@ -47,10 +47,10 @@ nmap <silent> <tab> :tabnext <CR>
 nmap <silent> <s-tab> :tabprevious <CR>
 
 " Edit Vim configs
-nmap <leader>va :vsp<CR>:e ~/work/dot-files/vim/abbreviations.vim<CR>
-nmap <leader>vk :vsp<CR>:e ~/work/dot-files/vim/keymaps.vim<CR>
-nmap <leader>vp :vsp<CR>:e ~/work/dot-files/vim/plug.vim<CR>
-nmap <leader>vv :vsp<CR>:e ~/work/dot-files/vim/vimrc<CR>
+nmap <leader>va :sp<CR>:e ~/work/dot-files/vim/abbreviations.vim<CR>
+nmap <leader>vk :sp<CR>:e ~/work/dot-files/vim/keymaps.vim<CR>
+nmap <leader>vp :sp<CR>:e ~/work/dot-files/vim/plug.vim<CR>
+nmap <leader>vv :sp<CR>:e ~/work/dot-files/vim/vimrc<CR>
 nmap <leader>vvv :so $MYVIMRC<CR>
 
 " The following three commands enables pasting code snippets
