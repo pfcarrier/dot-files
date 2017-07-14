@@ -15,8 +15,8 @@ nnoremap Q <nop>
 
 " ================ General Config ====================
 
-set number                      " Display line number
-set relativenumber              " ... relative to cursor location
+"set number                      " Display line number
+"set relativenumber              " ... relative to cursor location
 set backspace=indent,eol,start  " Makes backspace key more powerful
 set history=1000                " Store more :cmdline history
 set showcmd                     " Show incomplete cmds down the bottom
