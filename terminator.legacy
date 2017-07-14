@@ -1,0 +1,71 @@
+[global_config]
+  title_transmit_bg_color = "#d30102"
+  focus = mouse
+  inactive_color_offset = 1.0
+  suppress_multiple_term_dialog = True
+[keybindings]
+  switch_to_tab_6 = <Super>6
+  switch_to_tab_7 = <Super>7
+  switch_to_tab_4 = <Super>4
+  switch_to_tab_5 = <Super>5
+  switch_to_tab_2 = <Super>2
+  switch_to_tab_3 = <Super>3
+  switch_to_tab_1 = <Super>1
+  hide_window = <Alt>a
+  switch_to_tab_8 = <Super>8
+  switch_to_tab_9 = <Super>9
+[profiles]
+  [[default]]
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    background_image = None
+    scrollback_lines = 50000
+    use_system_font = False
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    font = Hack 11
+    background_color = "#eee8d5"
+  [[solarized-dark-real]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    background_image = None
+    scrollback_lines = 50000
+    use_system_font = False
+    cursor_color = "#eee8d5"
+    foreground_color = "#eee8d5"
+    font = Hack 11
+    background_color = "#002b36"
+  [[solarized-light-real]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    background_image = None
+    scrollback_lines = 50000
+    use_system_font = False
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    font = Hack 11
+    background_color = "#eee8d5"
+  [[solarized-dark-p2]]
+    use_system_font = False
+    scrollback_lines = 50000
+    background_image = None
+    cursor_color = "#eee8d5"
+    foreground_color = "#eee8d5"
+    font = Hack 11
+    background_color = "#002b36"
+  [[solarized-light-p2]]
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    background_image = None
+    scrollback_lines = 50000
+    use_system_font = False
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    font = Hack 11
+    background_color = "#eee8d5"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = solarized-light-p2
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
