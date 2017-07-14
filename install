@@ -54,8 +54,7 @@ function dep(){
         mosh \
         tree \
         keychain \
-        ctags
-      sudo apt-get install -t jessie-backports \
+        ctags \
         golang \
         tmate
       ;;
