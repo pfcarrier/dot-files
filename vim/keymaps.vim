@@ -78,7 +78,7 @@ autocmd FileType go nmap <leader>r  :GoRun<CR>
 "autocmd FileType go nmap <leader>l  :GoLint<CR>
 autocmd FileType go nmap <leader>i  :GoImports<CR>
 autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
-autocmd FileType go nmap gr :call go#def#StackPop(v:count1)<CR>
+autocmd FileType go nmap gr         :call go#def#StackPop(v:count1)<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 map <leader>- :cnext<CR>            " next quickfix item
 map <leader>= :cprevious<CR>        " previous quickfix item
@@ -153,3 +153,32 @@ map <leader>co :call ToggleDimTags()<CR>
 
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
+
+nmap <leader>s :TagbarToggle<CR>
+let g:tagbar_type_go = {  
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }

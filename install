@@ -41,7 +41,8 @@ function dep(){
         tmate \
         tmux \
         mosh \
-        tree
+        tree \
+        ctags
       ;;
     debian)
       sudo apt-get update
@@ -52,7 +53,8 @@ function dep(){
         tmux \
         mosh \
         tree \
-        keychain
+        keychain \
+        ctags
       sudo apt-get install -t jessie-backports \
         golang \
         tmate
@@ -68,7 +70,8 @@ function dep(){
         tmate \
         tmux \
         mosh \
-        tree
+        tree \
+        ctags
       ;;
   esac
 }

@@ -9,6 +9,7 @@ Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 
+Plug 'majutsushi/tagbar'
 Plug 'fatih/molokai'
 Plug 'altercation/vim-colors-solarized'
 
