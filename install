@@ -90,6 +90,7 @@ function clean(){
   rm -f \
     ~/.vimrc \
     ~/.config/nvim/init.vim \
+    ~/.config/terminator/config \
     ~/.gitconfig \
     ~/.bash_profile \
     ~/work/bash-git-prompt/themes/p2.bgptheme \
@@ -102,6 +103,7 @@ function init(){
   curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   mkdir -p ~/.config/nvim/
+  mkdir -p ~/.config/terminator/
   ln -s ~/.vimrc ~/.config/nvim/init.vim
   ln -s ~/work/dot-files/vim/vimrc ~/.vimrc
   ln -s ~/work/dot-files/gitconfig ~/.gitconfig
@@ -109,6 +111,8 @@ function init(){
   ln -s ~/work/dot-files/bash_profile ~/.bash_profile
   ln -s ~/work/dot-files/bash-git-prompt/p2.bgptheme \
     ~/work/bash-git-prompt/themes/p2.bgptheme
+  ln -s ~/work/dot-files/terminator \
+    ~/.config/terminator/config
   source ~/.bash_profile
   bash -c "</dev/tty vim -c PlugInstall -c q -c q"
   bash -c "</dev/tty vim -c GoInstallBinaries -c q -c q"
