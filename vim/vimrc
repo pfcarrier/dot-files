@@ -136,6 +136,7 @@ aug QFClose
 "set t_Co=256
 "let g:rehash256 = 1
 
+"set t_Co=16
 colorscheme solarized
 set background=light
 "let g:solarized_termcolors=256
