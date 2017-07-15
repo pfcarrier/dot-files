@@ -135,10 +135,14 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 :nmap <leader>nnn :set relativenumber!<CR>
 
 " Switch background light/dark
-map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:highlight SpecialKey ctermbg=NONE guibg=NONE<CR>:highlight ExtraWhitespace ctermbg=red guibg=red<CR>
+map <Leader>bg :let &background =
+  \ ( &background == "dark"? "light" : "dark" )<CR>
+  \ :highlight SpecialKey ctermbg=NONE guibg=NONE<CR>
+  \ :highlight ExtraWhitespace ctermbg=red guibg=red<CR>
 
 " Switch colorscheme solarized/molokai
-map <Leader>co :let &colorscheme = ( &colorscheme == "solarized"? "molokai" : "solarized" )<CR>
+map <Leader>co :let &colorscheme = 
+  \ ( &colorscheme == "solarized"? "molokai" : "solarized" )<CR>
 
 " Toggle between colorsheme molokai/solarized
 function! ToggleDimTags()
