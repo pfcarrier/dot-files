@@ -71,15 +71,13 @@ set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
 " ========== Golang/vim-go related shortcut ===========
-autocmd FileType go nmap <leader>f  :GoFmt<CR>
 autocmd FileType go nmap <leader>t  :GoTest<CR>
 autocmd FileType go nmap <leader>tt :GoTestFunc<CR>
 autocmd FileType go nmap <leader>r  :GoRun<CR>
 "autocmd FileType go nmap <leader>l  :GoLint<CR>
-autocmd FileType go nmap <leader>i  :GoImports<CR>
 autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
 autocmd FileType go nmap gr         :call go#def#StackPop(v:count1)<CR>
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <Leader>c  :GoCoverageToggle<CR>
 map <leader>- :cnext<CR>            " next quickfix item
 map <leader>= :cprevious<CR>        " previous quickfix item
 nnoremap <leader>a :cclose<CR>      " close quickfix window
