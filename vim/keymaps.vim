@@ -93,6 +93,8 @@ endfunction
 augroup go
   autocmd!
 
+  autocmd FileType go nmap <silent> <Leader>t :GoSameIdsAutoToggle<CR>
+  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
   autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
