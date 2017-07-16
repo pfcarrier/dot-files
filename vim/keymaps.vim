@@ -71,10 +71,7 @@ set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
 " ========== Golang/vim-go related shortcut ===========
-autocmd FileType go nmap <leader>t  :GoTest<CR>
-autocmd FileType go nmap <leader>tt :GoTestFunc<CR>
 autocmd FileType go nmap <leader>r  :GoRun<CR>
-"autocmd FileType go nmap <leader>l  :GoLint<CR>
 autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
 autocmd FileType go nmap gr         :call go#def#StackPop(v:count1)<CR>
 autocmd FileType go nmap <Leader>c  :GoCoverageToggle<CR>
@@ -91,8 +88,18 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-"autocmd FileType go nmap <leader>b :GoBuild<CR>
+
+
+augroup go
+  autocmd!
+
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
 
 " ==================== Reminder =======================
 "

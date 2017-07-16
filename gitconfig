@@ -22,4 +22,4 @@
 [web]
   browser = google-chrome
 [diff]
-  context = 20
+  context = 10
