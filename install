@@ -62,6 +62,8 @@ function dep(){
       brew install --upgrade \
         coreutils \
         vim \
+        bash \
+        bash-completion@2 \
         neovim/neovim/neovim \
         curl \
         golang \
