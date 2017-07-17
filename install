@@ -115,7 +115,6 @@ function init(){
     ~/work/bash-git-prompt/themes/p2.bgptheme
   ln -s ~/work/dot-files/terminator \
     ~/.config/terminator/config
-  source ~/.bash_profile
   bash -c "</dev/tty vim -c PlugInstall -c q -c q"
   bash -c "</dev/tty vim -c PlugUpdate -c q -c q"
   bash -c "</dev/tty vim -c GoInstallBinaries -c q -c q"
