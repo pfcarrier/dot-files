@@ -5,5 +5,3 @@
 :ab screenshot
   \ page.save_screenshot(File.join(Dir.home, 'Desktop', 'test.png'), full: true)
 :ab skip [ci skip]
-
-command T tabe ~/work/wathever/todo

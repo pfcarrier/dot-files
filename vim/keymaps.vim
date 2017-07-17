@@ -47,10 +47,10 @@ nmap <silent> <tab> :tabnext <CR>
 nmap <silent> <s-tab> :tabprevious <CR>
 
 " Edit Vim configs
-nmap <leader>va :sp<CR>:tabe ~/work/dot-files/vim/abbreviations.vim<CR>
-nmap <leader>vk :sp<CR>:tabe ~/work/dot-files/vim/keymaps.vim<CR>
-nmap <leader>vp :sp<CR>:tabe ~/work/dot-files/vim/plug.vim<CR>
-nmap <leader>vv :sp<CR>:tabe ~/work/dot-files/vim/vimrc<CR>
+nmap <leader>va :tabe ~/work/dot-files/vim/abbreviations.vim<CR>
+nmap <leader>vk :tabe ~/work/dot-files/vim/keymaps.vim<CR>
+nmap <leader>vp :tabe ~/work/dot-files/vim/plug.vim<CR>
+nmap <leader>vv :tabe ~/work/dot-files/vim/vimrc<CR>
 nmap <leader>vvv :so $MYVIMRC<CR>
 
 " The following three commands enables pasting code snippets
@@ -69,6 +69,9 @@ map <leader>s :setlocal spell! spelllang=en_us<CR>
 " Use <leader-m> to toggle mouse on/off
 set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
+
+" ======================= Todo ========================
+command! T tabe ~/work/wathever/todo
 
 " ===================== Quickfix ======================
 map <leader>- :cnext<CR>            " next quickfix item
@@ -129,15 +132,16 @@ augroup END
 " C         -- replace everything from cursor till end of line
 " A         -- append at the end of the line
 " I         -- insert begin of the line
-" VIM-GO RELATED
-" gd        -- go to definition
-" ctrl-t    -- go back from definition
-" gr        -- go back from definition (alt)
 " C-n       -- new tab
+" c-w T     -- move current windows to a new tab
 " tab       -- next tab
 " S-tab     -- previous tab
 " <space><space> -- remove search highlight
 " igv
+" VIM-GO RELATED
+" gd        -- go to definition
+" ctrl-t    -- go back from definition
+" gr        -- go back from definition (alternative)
 
 " Hide/unhide number
 :nmap <leader>nn :set number!<CR>
