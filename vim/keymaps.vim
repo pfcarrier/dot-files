@@ -57,6 +57,7 @@ nmap <leader>vvv :so $MYVIMRC<CR>
 " using F2 key (disables auto-indenting)
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
+nmap <leader>pp :set invpaste paste?<CR>
 
 " F6 and <leader>s toggles spell checking
 map <F6> :setlocal spell! spelllang=en_us<CR>
@@ -71,9 +72,11 @@ set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
 " ======================= Todo ========================
+
 command! T tabe ~/work/wathever/todo
 
 " ===================== Quickfix ======================
+
 map <leader>- :cnext<CR>            " next quickfix item
 map <leader>= :cprevious<CR>        " previous quickfix item
 nnoremap <leader>a :cclose<CR>      " close quickfix window
@@ -93,20 +96,26 @@ endfunction
 augroup go
   autocmd!
 
-  autocmd FileType go nmap <leader>r  :GoRun<CR>
-  autocmd FileType go nmap <leader>t  :GoTest<CR>
-  autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
-  autocmd FileType go nmap <Leader>s  :GoSameIdsAutoToggle<CR>
-  autocmd FileType go nmap <Leader>i  :GoAutoTypeInfoToggle<CR>
-  autocmd FileType go nmap <Leader>c  :GoCoverageToggle<CR>
-  autocmd FileType go nmap <leader>b  :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap gr         :call go#def#StackPop(v:count1)<CR>
+  autocmd FileType go nmap <leader>r   :GoRun<CR>
+  autocmd FileType go nmap <leader>t   :GoTest<CR>
+  autocmd FileType go nmap <leader>m   :GoMetaLinter<CR>
+  autocmd FileType go nmap <Leader>ss  :GoSameIdsAutoToggle<CR>
+  autocmd FileType go nmap <Leader>i   :GoInfo<CR>
+  autocmd FileType go nmap <Leader>ii  :GoAutoTypeInfoToggle<CR>
+  autocmd FileType go nmap <Leader>c   :GoCoverageToggle<CR>
+  autocmd FileType go nmap <leader>b   :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap gr          :call go#def#StackPop(v:count1)<CR>
 
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
+
+" ================= Reposition tab ====================
+
+noremap <A-Left>  :-tabmove<cr>
+noremap <A-Right> :+tabmove<cr>
 
 " ==================== Reminder =======================
 "
@@ -120,11 +129,14 @@ augroup END
 " t       -- NERD -> open file in a new tab
 " T       -- NERD -> open file in a new tab, stay in NERD
 " go      -- open NERDTree file in same windows, stay in NERD pane
-" <C-w_>
-" <C-w+>
-" <C-w->
-" <C-w=>
-" ctrl-hjkl -- move between pane
+" <C-w>arrow  -- switch pane
+" <C-w>_  -- give all the space to active pane
+" <C-w>=  -- distribute space equaly between all pane
+" <C-w>+  -- increase horizontal size of pane by one line
+" <C-w>-  -- decrease horizontal size of pane by one line
+" <C-w>>  -- increase horizontal size of pane by one line
+" <C-w><  -- decrease horizontal size of pane by one line
+" ctrl-hl -- move between tab left and right
 " <leader>-hjkl -- move between pane
 " <leader>arrow -- move between pane
 " qa        -- close all
@@ -138,6 +150,15 @@ augroup END
 " S-tab     -- previous tab
 " <space><space> -- remove search highlight
 " igv
+" add text on multiple line ( variation with 'd' )
+" <c-v>arrow " select text on multiple line, hit I, type something, hit escape
+" modify indentation on mutiple line ( variation with '<' )
+" <c-v>arrow " select tesx on multiple line,hit '>', hit '.' multiple time
+" while in insert mode some normal mode command can be used with ALT
+" E.g. <a-o> insert line
+"      <a-I> go begin of line
+"      <a-A> go end of line
+"      <a-hjkl> bye bye arrow key
 " VIM-GO RELATED
 " gd        -- go to definition
 " ctrl-t    -- go back from definition
