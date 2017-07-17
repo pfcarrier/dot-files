@@ -74,7 +74,6 @@ map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 autocmd FileType go nmap <leader>r  :GoRun<CR>
 autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
 autocmd FileType go nmap gr         :call go#def#StackPop(v:count1)<CR>
-autocmd FileType go nmap <Leader>c  :GoCoverageToggle<CR>
 map <leader>- :cnext<CR>            " next quickfix item
 map <leader>= :cprevious<CR>        " previous quickfix item
 nnoremap <leader>a :cclose<CR>      " close quickfix window
@@ -89,13 +88,13 @@ function! s:build_go_files()
   endif
 endfunction
 
-
 augroup go
   autocmd!
 
-  autocmd FileType go nmap <silent> <Leader>t :GoSameIdsAutoToggle<CR>
-  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <Leader>s :GoSameIdsAutoToggle<CR>
+  autocmd FileType go nmap <Leader>i :GoAutoTypeInfoToggle<CR>
   autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <Leader>c  :GoCoverageToggle<CR>
 
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
@@ -166,7 +165,7 @@ map <leader>co :call ToggleDimTags()<CR>
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
-nmap <leader>s :TagbarToggle<CR>
+nmap <leader>T :TagbarToggle<CR>
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
