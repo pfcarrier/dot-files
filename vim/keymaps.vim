@@ -70,13 +70,12 @@ map <leader>s :setlocal spell! spelllang=en_us<CR>
 set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
-" ========== Golang/vim-go related shortcut ===========
-autocmd FileType go nmap <leader>r  :GoRun<CR>
-autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
-autocmd FileType go nmap gr         :call go#def#StackPop(v:count1)<CR>
+" ===================== Quickfix ======================
 map <leader>- :cnext<CR>            " next quickfix item
 map <leader>= :cprevious<CR>        " previous quickfix item
 nnoremap <leader>a :cclose<CR>      " close quickfix window
+
+" ========== Golang/vim-go related shortcut ===========
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -91,10 +90,14 @@ endfunction
 augroup go
   autocmd!
 
-  autocmd FileType go nmap <Leader>s :GoSameIdsAutoToggle<CR>
-  autocmd FileType go nmap <Leader>i :GoAutoTypeInfoToggle<CR>
-  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <leader>r  :GoRun<CR>
+  autocmd FileType go nmap <leader>t  :GoTest<CR>
+  autocmd FileType go nmap <leader>m  :GoMetaLinter<CR>
+  autocmd FileType go nmap <Leader>s  :GoSameIdsAutoToggle<CR>
+  autocmd FileType go nmap <Leader>i  :GoAutoTypeInfoToggle<CR>
   autocmd FileType go nmap <Leader>c  :GoCoverageToggle<CR>
+  autocmd FileType go nmap <leader>b  :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap gr         :call go#def#StackPop(v:count1)<CR>
 
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
