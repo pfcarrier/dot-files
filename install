@@ -115,9 +115,11 @@ function init(){
     ~/.config/terminator/config
   source ~/.bash_profile
   bash -c "</dev/tty vim -c PlugInstall -c q -c q"
+  bash -c "</dev/tty vim -c PlugUpdate -c q -c q"
   bash -c "</dev/tty vim -c GoInstallBinaries -c q -c q"
   if which nvim &>/dev/null ; then
     bash -c "</dev/tty nvim -c PlugInstall -c q -c q"
+    bash -c "</dev/tty nvim -c PlugUpdate -c q -c q"
     bash -c "</dev/tty nvim -c GoInstallBinaries -c q -c q"
   fi
   #vim -E -c GoUpdateBinaries -c q -c q
