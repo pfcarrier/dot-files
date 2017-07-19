@@ -26,6 +26,7 @@ nmap <silent> <S-h> :wincmd h <CR>
 nmap <silent> <S-l> :wincmd l <CR>
 nmap <silent> <S-j> :wincmd j <CR>
 nmap <silent> <S-k> :wincmd k <CR>
+noremap J :join<CR> " this fix map above that overwrite 'J'
 
 " Use leader-arrow to move between pane
 nnoremap <silent> <leader><UP> :wincmd k<CR>
