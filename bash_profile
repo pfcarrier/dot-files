@@ -28,6 +28,10 @@ else
   fi
 fi
 
+# Updates PATH for awscli
+#
+export PATH=$PATH:$HOME/Library/Python/3.6/bin/
+
 # Updates PATH for the Google Cloud SDK.
 #
 if [ -f '/Users/pierre.fortincarrier/Downloads/google-cloud-sdk/path.bash.inc' ]; then source '/Users/pierre.fortincarrier/Downloads/google-cloud-sdk/path.bash.inc'; fi
