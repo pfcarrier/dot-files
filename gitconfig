@@ -7,12 +7,14 @@
   fr = !git fetch && git rebase --autostash FETCH_HEAD
   c = checkout
   ci = commit
+  a = add -p
+  ac = !git a && git commit
+  actp = !git a && git ci && git tp
   s = status
   b = branch
   p = !git push origin HEAD && git push --tag origin
   l = log --stat
   d = diff --color
-  a = add -p
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   type = cat-file -t
   dump = cat-file -p

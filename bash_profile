@@ -112,12 +112,13 @@ shopt -s cdspell
 #
 shopt -s checkwinsize
 
-alias .="cd .."
-alias ..="cd ../.."
-alias ...="cd ../../.."
-alias ....="cd ../../../.."
-alias .....="cd ../../../../.."
-alias ......="cd ../../../../../.."
-alias .......="cd ../../../../../../.."
-alias ........="cd ../../../../../../../.."
-alias .........="cd ../../../../../../../../.."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias ........="cd ../../../../../../.."
+alias .........="cd ../../../../../../../.."
+
+alias repos-liaison-intl="/work/liaison-intl/ops-tool/git-helper/do"
