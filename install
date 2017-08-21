@@ -75,6 +75,8 @@ function dep(){
         ctags
       ;;
   esac
+
+  go get github.com/calmh/git-autotag
 }
 
 function repos(){
