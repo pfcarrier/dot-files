@@ -55,6 +55,12 @@ if which kubectl >/dev/null ; then
   source <(kubectl completion bash)
 fi
 
+# Enable shell command completion for kops
+#
+if which kops >/dev/null ; then
+  source <(kops completion bash)
+fi
+
 # Load and copy gitprompt profile to correct location on mac
 #
 if [[ -f ~/work/bash-git-prompt/gitprompt.sh ]] ; then
