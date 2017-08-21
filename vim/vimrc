@@ -38,6 +38,9 @@ syntax on                       " Turn on syntax highlighting
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
 
+au BufReadPost Jenkinsfile set syntax=groovy
+au BufReadPost Jenkinsfile set filetype=groovy
+
 " ================ Turn Off Swap Files ==============
 
 set noswapfile
