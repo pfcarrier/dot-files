@@ -9,7 +9,7 @@
   ci = commit
   s = status
   b = branch
-  p = push origin HEAD
+  p = !git push origin HEAD && git push --tag origin
   l = log --stat
   d = diff --color
   a = add -p
