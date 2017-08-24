@@ -10,6 +10,7 @@
   a = add -p
   ac = !git a && git commit
   actp = !git a && git ci && git tp
+  dry = !git a && git ci -m "iteration" && git tp
   s = status
   b = branch
   p = !git push origin HEAD && git push --tag origin
