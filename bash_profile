@@ -128,3 +128,7 @@ alias ........="cd ../../../../../../.."
 alias .........="cd ../../../../../../../.."
 
 alias repos-liaison-intl="/work/liaison-intl/ops-tool/git-helper/do"
+
+if [[ -f ~/.sensible_profile ]] ; then
+  . ~/.sensible_profile
+fi
