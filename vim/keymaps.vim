@@ -72,6 +72,9 @@ map <leader>s :setlocal spell! spelllang=en_us<CR>
 set mouse=
 map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 
+" prune trailing space
+nnoremap <leader>s :%s/\s\+$//<CR>
+
 " ======================= Todo ========================
 
 command! T tabe ~/work/wathever/todo
