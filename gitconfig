@@ -22,10 +22,13 @@
   ls = log --stat --pretty=short --graph
   t = !git-autotag
   tp = !git-autotag && git push origin HEAD && git push --tag origin
-  pr = !hub pull-request
-  pull-request = !git pr
+  pr = !gh pull-request
+  prb = !gh pull-request --browser
+  npr = !hub pull-request --browse
+  notification = !gh notification
   compare = !hub compare
   browse = !hub browse
+
 [color]
   ui = true
 [web]
