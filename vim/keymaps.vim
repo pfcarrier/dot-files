@@ -75,6 +75,9 @@ map <Leader>m :let &mouse = ( &mouse == "a"? "" : "a" )<CR>
 " prune trailing space
 nnoremap <leader>s :%s/\s\+$//<CR>
 
+" prune all tab
+nnoremap <leader>ss :%s/\t/  /g<CR>
+
 " ======================= Todo ========================
 
 command! T tabe ~/work/wathever/todo
