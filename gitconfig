@@ -22,9 +22,16 @@
   ls = log --stat --pretty=short --graph
   t = !git-autotag
   tp = !git-autotag && git push origin HEAD && git push --tag origin
+  pr = !hub pull-request
+  compare = !hub compare
+  browse = !hub browse
 [color]
   ui = true
 [web]
   browser = google-chrome
 [diff]
   context = 10
+[github]
+	user = pfcarrier
+[ghi]
+	token = !security find-internet-password -a pfcarrier -s github.com -l 'ghi token' -w
