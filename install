@@ -42,7 +42,8 @@ function dep(){
         tmux \
         mosh \
         tree \
-        ctags
+        ctags \
+        bc
       ;;
     debian)
       sudo apt-get update
@@ -56,7 +57,8 @@ function dep(){
         keychain \
         ctags \
         golang \
-        tmate
+        tmate \
+        bc
       ;;
     macos)
       brew install --upgrade \
@@ -72,7 +74,9 @@ function dep(){
         tmux \
         mosh \
         tree \
-        ctags
+        ctags \
+        bc \
+        ghi
       ;;
   esac
 
