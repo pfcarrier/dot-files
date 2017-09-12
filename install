@@ -76,7 +76,8 @@ function dep(){
         tree \
         ctags \
         bc \
-        ghi
+        ghi \
+        hub
       ;;
   esac
 
