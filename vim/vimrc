@@ -157,7 +157,7 @@ endif
 
 "highlight LineNr ctermbg=grey    " Set number colum to be black
 
-" ================ Status line =======================
+" ================ Status line ======================
 
 set statusline=%<%f\ %h%{fugitive#statusline()}%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2                " Always display statusline vs only when split
@@ -173,6 +173,12 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" ============= Higlight tab character ==============
+
+autocmd FileType terraform setlocal highlight Tab ctermbg=red guibg=red
+autocmd FileType groovy    setlocal highlight Tab ctermbg=red guibg=red
+autocmd FileType bash      setlocal highlight Tab ctermbg=red guibg=red
 
 " ============ Visual cue past colum 80 =============
 
