@@ -28,6 +28,7 @@
   notification = !gh notification
   compare = !hub compare
   browse = !hub browse
+  lol = log --graph --oneline --decorate
 
 [color]
   ui = true
