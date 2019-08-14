@@ -151,7 +151,7 @@ function _awsListAll() {
 };
 
 function _awsSwitchProfile() {
-   if [ -z $1 ]; then  echo "Usage: awsp profilename"; return; fi
+   if [ -z $1 ]; then _awsListAll ; return; fi
 
    exists="$(aws configure get aws_access_key_id --profile $1)"
    if [[ -n $exists ]]; then
